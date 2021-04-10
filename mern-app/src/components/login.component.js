@@ -12,7 +12,6 @@ export default class Login extends Component{
         this.state = {
             username: '',
             password: '',
-            passwordHash: '',
             accountType: ''
         }
     }
@@ -23,7 +22,6 @@ export default class Login extends Component{
         const user = {
             username: this.state.username,
             password: this.state.password,
-            passwordHash: '0x1',
             accountType: 'management'
         }
 

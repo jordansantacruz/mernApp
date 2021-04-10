@@ -14,13 +14,11 @@ router.route('/login').post((req, res) => {
         .catch(err => res.status(400).json('Error: ' + err));
 });
 
-
-
 router.route('/add').post((req, res) => {
     const username = req.body.username;
     const password = req.body.password;
-    const passwordHash = req.body.passwordHash;
-    const newUser = new User({username, password, passwordHash});
+    const accountType = req.body.accountType;
+    const newUser = new User({username, password, accountType});
     newUser.save()
         .then(() => res.json('User added!'))
         .catch(err => res.status(400).json('Error: ' + err));
