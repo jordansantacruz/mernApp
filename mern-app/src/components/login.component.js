@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import axios from 'axios';
+import {Redirect} from "react-router-dom";
 
 export default class Login extends Component{
     constructor(props){
@@ -12,7 +13,8 @@ export default class Login extends Component{
         this.state = {
             username: '',
             password: '',
-            accountType: ''
+            accountType: '',
+            redirect: null
         }
     }
 
@@ -24,12 +26,14 @@ export default class Login extends Component{
             password: this.state.password,
             accountType: 'management'
         }
-
+        var self = this;
         //TODO: make this API function
         axios.post('http://localhost:5000/users/login', user)
             .then(function(res){
                 //redirect to homepage
-                console.log(res);
+                self.setState({redirect: '/homepage'});
+            }).catch(function(e){
+                console.log(e);
             });
     }
 
@@ -46,6 +50,10 @@ export default class Login extends Component{
     }
 
     render() {
+        if(this.state.redirect){
+            return <Redirect to={this.state.redirect} />
+        }
+
         return(
             <div>
                 <h3>Log In</h3>

@@ -24,7 +24,6 @@ const userSchema = new Schema({
     }
 }, {timestamps: true});
 
-
 userSchema.pre('validate', function (next){
     console.log("hashing...");
     var user = this;
